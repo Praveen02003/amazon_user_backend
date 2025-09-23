@@ -1,0 +1,37 @@
+import mongoose from "mongoose";
+
+const mobileSchema = new mongoose.Schema({
+  image: {
+    type: String,
+    required: true
+  },
+  multipleimage: {
+    type: [String],
+    default: []
+  },
+  title: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  offer: {
+    type: Number, 
+    default: 0
+  },
+  defaultprice: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+}, { timestamps: true });
+
+export const Mobiles = mongoose.model("Mobile", mobileSchema);
+
+
