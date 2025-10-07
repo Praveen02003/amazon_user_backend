@@ -6,15 +6,15 @@ const orderconfirmationSchema = new mongoose.Schema({
     required: true
   },
   cartitems: {
-    type: String,
+    type: Object,
     required:true
   },
   cartquantity: {
-    type: String,
+    type: Object,
     required: true
   },
   wishlist: {
-    type: String,
+    type: Object,
     default:""
   },
   total: {

@@ -140,14 +140,14 @@ app.post("/getwishlist", async (req, res) => {
 app.get("/getoffers", async (req, res) => {
   var datas = []
   try {
-    const laptops = await Laptops.find({ offer: { $exists: true } })
-    const mobiles = await Mobiles.find({ offer: { $exists: true } })
-    const earpods = await Earpods.find({ offer: { $exists: true } })
-    const tvs = await Tvs.find({ offer: { $exists: true } })
-    const hometheatres = await Hometheatres.find({ offer: { $exists: true } })
-    const keyboards = await Keyboards.find({ offer: { $exists: true } })
-    const mouses = await Mouses.find({ offer: { $exists: true } })
-    const chargers = await Chargers.find({ offer: { $exists: true } })
+    const laptops = await Laptops.find({ offer: { $gt: 0 } });
+    const mobiles = await Mobiles.find({ offer: { $gt: 0 } });
+    const earpods = await Earpods.find({ offer: { $gt: 0 } });
+    const tvs = await Tvs.find({ offer: { $gt: 0 } });
+    const hometheatres = await Hometheatres.find({ offer: { $gt: 0 } });
+    const keyboards = await Keyboards.find({ offer: { $gt: 0 } });
+    const mouses = await Mouses.find({ offer: { $gt: 0 } });
+    const chargers = await Chargers.find({ offer: { $gt: 0 } });
     datas = [...laptops, ...mobiles, ...earpods, ...tvs, ...hometheatres, ...keyboards, ...mouses, ...chargers]
     //console.log(datas);
     res.json({ message: datas });

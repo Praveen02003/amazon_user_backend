@@ -19,7 +19,7 @@ const earpodSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
-    required: true
+    default: 0
   },
   offer: {
     type: Number, 
@@ -27,7 +27,6 @@ const earpodSchema = new mongoose.Schema({
   },
   defaultprice: {
     type: Number,
-    required: true,
     default: 0
   },
 }, { timestamps: true });
