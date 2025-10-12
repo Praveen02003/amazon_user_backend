@@ -3,16 +3,16 @@ import mongoose from "mongoose";
 import cors from "cors";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { Laptops } from "./Laptops.js";
-import { Mobiles } from "./Mobiles.js";
-import { Earpods } from "./Earpods.js";
-import { Tvs } from "./Tv.js";
-import { Hometheatres } from "./Hometheatres.js";
-import { Keyboards } from "./Keyboards.js";
-import { Mouses } from "./Mouse.js";
-import { Chargers } from "./Chargers.js";
+import { Laptops } from "./Categories/Laptops.js";
+import { Mobiles } from "./Categories/Mobiles.js";
+import { Earpods } from "./Categories/Earpods.js";
+import { Tvs } from "./Categories/Tv.js";
+import { Hometheatres } from "./Categories/Hometheatres.js";
+import { Keyboards } from "./Categories/Keyboards.js";
+import { Mouses } from "./Categories/Mouse.js";
+import { Chargers } from "./Categories/Chargers.js";
 import { Usersignup } from "./Signup.js";
-import { verifytoken } from "./Tokenverification.js";
+import { verifytoken } from "./Tokenverification/Tokenverification.js";
 import { Orders } from "./Orderconfirmation.js";
 
 const app = express();
@@ -20,8 +20,8 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-const MONGO_URI = "mongodb://127.0.0.1:27017/amazondb";
-// const MONGO_URI = "mongodb+srv://Praveen:Praveen19112003@foodcartcluster.cbsx3vp.mongodb.net/amazondb?retryWrites=true&w=majority&appName=foodcartcluster";
+// const MONGO_URI = "mongodb://127.0.0.1:27017/amazondb";
+const MONGO_URI = "mongodb+srv://Praveen:Praveen19112003@foodcartcluster.cbsx3vp.mongodb.net/amazondb?retryWrites=true&w=majority&appName=foodcartcluster";
 
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
