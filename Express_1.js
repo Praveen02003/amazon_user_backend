@@ -20,8 +20,8 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-// const MONGO_URI = "mongodb://127.0.0.1:27017/amazondb";
-const MONGO_URI = "mongodb+srv://Praveen:Praveen19112003@foodcartcluster.cbsx3vp.mongodb.net/amazondb?retryWrites=true&w=majority&appName=foodcartcluster";
+const MONGO_URI = "mongodb://127.0.0.1:27017/amazondb";
+// const MONGO_URI = "mongodb+srv://Praveen:Praveen19112003@foodcartcluster.cbsx3vp.mongodb.net/amazondb?retryWrites=true&w=majority&appName=foodcartcluster";
 
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
