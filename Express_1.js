@@ -161,18 +161,18 @@ app.get("/getoffers", async (req, res) => {
   }
 });
 
-app.post('/getuser',verifytoken,async(req,res)=>{
+app.post('/getuser', verifytoken, async (req, res) => {
   try {
-    const userdata=await Usersignup.findOne({_id:req.id})
+    const userdata = await Usersignup.findOne({ _id: req.id })
     //console.log("---->",userdata);
-    res.json({message:userdata});
+    res.json({ message: userdata });
   } catch (error) {
     res.json({ message: "error" });
   }
 
 })
 
-app.post("/getcart",async(req, res) => {
+app.post("/getcart", async (req, res) => {
   const { ids } = req.body
   var datas = []
   try {
@@ -188,7 +188,7 @@ app.post("/getcart",async(req, res) => {
     const chargers = await Chargers.find({ _id: { $in: ids } })
     datas = [...laptops, ...mobiles, ...earpods, ...tvs, ...hometheatres, ...keyboards, ...mouses, ...chargers]
     //console.log(datas);
-    res.json({ message: datas});
+    res.json({ message: datas });
   }
   catch (error) {
     //console.log(error);
@@ -197,15 +197,15 @@ app.post("/getcart",async(req, res) => {
 });
 
 
-app.post("/getpricedata",async (req, res) => {
+app.post("/getpricedata", async (req, res) => {
   const { ids } = req.body
   //console.log(ids);
-  
+
   var datas = []
   try {
     // const userdata=await Usersignup.findOne({_id:req.id})
     //console.log(userdata);
-    
+
     const laptops = await Laptops.find({ _id: { $in: ids } })
     //console.log("-------------------------------->",laptops);
 
@@ -218,7 +218,7 @@ app.post("/getpricedata",async (req, res) => {
     const chargers = await Chargers.find({ _id: { $in: ids } })
     datas = [...laptops, ...mobiles, ...earpods, ...tvs, ...hometheatres, ...keyboards, ...mouses, ...chargers]
     //console.log(datas);
-    res.json({ message: datas});
+    res.json({ message: datas });
   }
   catch (error) {
     //console.log(error);
@@ -288,16 +288,16 @@ app.post("/updatepassword", async (req, res) => {
   }
 });
 
-app.post('/confirmation',async(req,res)=>{
-  const{email,cartitems,cartquantity,wishlist,total}=req.body
+app.post('/confirmation', async (req, res) => {
+  const { email, cartitems, cartquantity, wishlist, total } = req.body
   try {
     //const deletedata=await Orders.deleteOne({email:email})
-    const response=await Orders.insertMany([{email:email,cartitems:cartitems,cartquantity:cartquantity,wishlist:wishlist,total:total}])
+    const response = await Orders.insertMany([{ email: email, cartitems: cartitems, cartquantity: cartquantity, wishlist: wishlist, total: total }])
     //console.log(response);
-    res.json({message:"Order Updated Successfully"})
+    res.json({ message: "Order Updated Successfully" })
   } catch (error) {
     //console.log("error");
-    res.json({message:"Order Updated Failed"})
+    res.json({ message: "Order Updated Failed" })
   }
 })
 
@@ -319,6 +319,28 @@ app.post("/generateqr", async (req, res) => {
     res.json({ message: "Failed to generate QR" });
   }
 });
+
+app.post('/getsearcheddata', async (req, res) => {
+  const { datas } = req.body
+  var getdatas = []
+  try {
+    const laptops = await Laptops.find({ title: datas });
+    const mobiles = await Mobiles.find({ title: datas });
+    const earpods = await Earpods.find({ title: datas });
+    const tvs = await Tvs.find({ title: datas });
+    const hometheatres = await Hometheatres.find({ title: datas });
+    const keyboards = await Keyboards.find({ title: datas });
+    const mouses = await Mouses.find({ title: datas });
+    const chargers = await Chargers.find({ title: datas });
+    getdatas = [...laptops, ...mobiles, ...earpods, ...tvs, ...hometheatres, ...keyboards, ...mouses, ...chargers]
+    // console.log(getdatas);
+    res.json({ message: getdatas });
+  }
+  catch (error) {
+    //console.log(error);
+    res.json({ message: "error" });
+  }
+})
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
