@@ -342,6 +342,29 @@ app.post('/getsearcheddata', async (req, res) => {
   }
 })
 
+app.post('/getfiltereddata', async (req, res) => {
+  const { minimum, maximum } = req.body
+  // console.log(minimum, "==> ",maximum);
+
+  var getdatas = []
+  try {
+    const laptops = await Laptops.find({ price: { $gte: Number(minimum), $lte: Number(maximum) } });
+    const mobiles = await Mobiles.find({ price: { $gte: Number(minimum), $lte: Number(maximum) } });
+    const earpods = await Earpods.find({ price: { $gte: Number(minimum), $lte: Number(maximum) } });
+    const tvs = await Tvs.find({ price: { $gte: Number(minimum), $lte: Number(maximum) } });
+    const hometheatres = await Hometheatres.find({ price: { $gte: Number(minimum), $lte: Number(maximum) } });
+    const keyboards = await Keyboards.find({ price: { $gte: Number(minimum), $lte: Number(maximum) } });
+    const mouses = await Mouses.find({ price: { $gte: Number(minimum), $lte: Number(maximum) } });
+    const chargers = await Chargers.find({ price: { $gte: Number(minimum), $lte: Number(maximum) } });
+    getdatas = [...laptops, ...mobiles, ...earpods, ...tvs, ...hometheatres, ...keyboards, ...mouses, ...chargers]
+    res.json({ message: getdatas });
+  }
+  catch (error) {
+    //console.log(error);
+    res.json({ message: "error" });
+  }
+})
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
